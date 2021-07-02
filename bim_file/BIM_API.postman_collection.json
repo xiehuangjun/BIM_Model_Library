@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "8f30c124-d9f6-4deb-b850-d7a6ee2ffe95",
+		"name": "BIM_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://140.118.121.100:5050/login?User_accountID=M10902208&User_password=m10902208",
+					"protocol": "http",
+					"host": [
+						"140",
+						"118",
+						"121",
+						"100"
+					],
+					"port": "5050",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "User_accountID",
+							"value": "M10902208"
+						},
+						{
+							"key": "User_password",
+							"value": "m10902208"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"User_accountID\": \"M10902208\",\r\n  \"User_account_name\": \"HuangJun\",\r\n  \"User_group\": \"A組\",\r\n  \"User_password\": \"m10902208\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://140.118.121.100:5050/login",
+					"protocol": "http",
+					"host": [
+						"140",
+						"118",
+						"121",
+						"100"
+					],
+					"port": "5050",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/object_store",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "User_accountID",
+							"value": "M10902208",
+							"type": "text"
+						},
+						{
+							"key": "Object_Name",
+							"value": "天花板一號",
+							"type": "text"
+						},
+						{
+							"key": "opng",
+							"type": "file",
+							"src": "/D:/M10902208/M10902208PPP20201202105149872613/M10902208PPP20201202105149872613.png"
+						},
+						{
+							"key": "threedm",
+							"type": "file",
+							"src": "/C:/Users/Charlie/Desktop/bim_file/Object.3dm"
+						},
+						{
+							"key": "gh",
+							"type": "file",
+							"src": "/D:/M10902208/M10902208PPP20201202112522549626/M10902208PPP20201202112522549626.gh"
+						},
+						{
+							"key": "pjpg",
+							"type": "file",
+							"src": "/C:/Users/Charlie/Desktop/bim_file/Project.jpg"
+						},
+						{
+							"key": "ojson",
+							"type": "file",
+							"src": "/C:/Users/Charlie/Desktop/bim_file/Ceiling Panel Parameters.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5050/object_store",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5050",
+					"path": [
+						"object_store"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/object_information",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5050/object_information?User_accountID=M10902208&Object_Name=天花板一號&Object_ID=M10902208PPP20201202035702055638V2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5050",
+					"path": [
+						"object_information"
+					],
+					"query": [
+						{
+							"key": "User_accountID",
+							"value": "M10902208"
+						},
+						{
+							"key": "Object_Name",
+							"value": "天花板一號"
+						},
+						{
+							"key": "Object_ID",
+							"value": "M10902208PPP20201202035702055638V2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/gh_download",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5050/gh_download?Object_ID=M10902208PPP20201202035702055638V2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5050",
+					"path": [
+						"gh_download"
+					],
+					"query": [
+						{
+							"key": "Object_ID",
+							"value": "M10902208PPP20201202035702055638V2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/3dm_download",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5050/3dm_download?Object_ID=M10902208PPP20201202035702055638V2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5050",
+					"path": [
+						"3dm_download"
+					],
+					"query": [
+						{
+							"key": "Object_ID",
+							"value": "M10902208PPP20201202035702055638V2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/main",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5050/main",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5050",
+					"path": [
+						"main"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5050/search?User_accountID=&Object_Name=天花板二",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5050",
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "User_accountID",
+							"value": ""
+						},
+						{
+							"key": "Object_Name",
+							"value": "天花板二"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

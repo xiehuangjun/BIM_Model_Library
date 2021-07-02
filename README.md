@@ -129,14 +129,16 @@ user = 0x9ac1ba1dfe605b2463728ae71181bbe0da58e9f2
 ## API Function
 
 ```
-> POST : http://140.118.121.100:5050/register 
-> > Body -> raw -> json
-> > > {
+1. POST : http://140.118.121.100:5050/register 
+- Body -> raw -> json
+{
   "User_accountID": "M10902208",
   "User_account_name": "HuangJun",
   "User_group": "A組",
   "User_password": "m10902208"
 }
+
+2. 
 ```
 
 > POST : http://140.118.121.100:5050/login

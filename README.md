@@ -1,4 +1,4 @@
-# BIM Ｍodel Library API
+# BIM API V3 User guide
 ###### tags: `BIM`
 
 ## Code
@@ -127,6 +127,8 @@ user = 0x9ac1ba1dfe605b2463728ae71181bbe0da58e9f2
 > 
 
 ## API Function
+
+```
 > POST : http://140.118.121.100:5050/register 
 > > Body -> raw -> json
 > > > {
@@ -135,6 +137,8 @@ user = 0x9ac1ba1dfe605b2463728ae71181bbe0da58e9f2
   "User_group": "A組",
   "User_password": "m10902208"
 }
+```
+
 > POST : http://140.118.121.100:5050/login
 > > Body -> raw -> json
 > > > {

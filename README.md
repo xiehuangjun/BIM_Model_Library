@@ -129,7 +129,8 @@ user = 0x9ac1ba1dfe605b2463728ae71181bbe0da58e9f2
 ## API Function
 
 ```
-1. POST : http://140.118.121.100:5050/register 
+1. Register User information
+POST : http://140.118.121.100:5050/register 
 Rule: Body -> raw -> json
 Parameters: {
   "User_accountID": "M10902208",
@@ -137,49 +138,65 @@ Parameters: {
   "User_group": "A組",
   "User_password": "m10902208"
 }
-
-2. POST : http://140.118.121.100:5050/login
+```
+```
+2. Login 
+POST : http://140.118.121.100:5050/login
 Rule: Body -> raw -> json
 Parameters: {
   "User_accountID": "cc11",
   "User_password": "11"
 }
-
-3. POST : http://140.118.121.100:5050/object_store
+```
+```
+3. Upload the information of Model Library (include text, files)
+POST : http://140.118.121.100:5050/object_store
 Rule: Body -> form-data (Key, Value)
 Parameters: User_accountID(text), Object_Name(text), opng(file), threedm(file), gh(file), pjpg(file), ojson(file), pdf(file)
-
-4. POST : http://140.118.121.100:5050/object_store
-Rule: Body -> form-data (Key, Value)
-Parameters: User_accountID(text), Object_Name(text), opng(file), threedm(file), gh(file), pjpg(file), ojson(file), pdf(file)
-
-5. GET : http://140.118.121.100:5050/object_information
+```
+```
+4. According to the paramters, and get the information from the database
+GET : http://140.118.121.100:5050/object_information
 Rule: Params (Key, Value)
 Parameters: User_accountID(text), Object_Name(text), Object_ID(text)
-
-6. GET : http://140.118.121.100:5050/gh_download
+```
+```
+5. Download the GH file.
+GET : http://140.118.121.100:5050/gh_download
 Rule: Params (Key, Value)
 Parameters: Object_ID(text)
-
-7. GET : http://140.118.121.100:5050/3dm_download
+```
+```
+6. Download the 3DM file.
+GET : http://140.118.121.100:5050/3dm_download
 Rule: Params (Key, Value)
 Parameters: Object_ID(text)
-
-8. GET : http://140.118.121.100:5050/main
-
-9. GET : http://140.118.121.100:5050/search
+```
+```
+7. Get the all data from the database, and display on the Model Library Web.
+GET : http://140.118.121.100:5050/main
+```
+```
+8. According to the paramters, and search from the database
+GET : http://140.118.121.100:5050/search
 Rule: Params (Key, Value)
 Parameters: User_accountID(text), Object_Name(text)
-
-10. GET : http://140.118.121.100:5050/pdf_download
+```
+```
+9. Download the PDF file.
+GET : http://140.118.121.100:5050/pdf_download
 Rule: Params (Key, Value)
 Parameters: Object_ID(text)
-
-11. GET : http://140.118.121.100:5050/json_download
+```
+```
+11. Download the JSON file.
+GET : http://140.118.121.100:5050/json_download
 Rule: Params (Key, Value)
 Parameters: Object_ID(text)
-
-12. POST : http://140.118.121.100:5050/ML_download
+```
+```
+12. Download the GH file of the Model Library, and use the Grasshopper to get the file.
+POST : http://140.118.121.100:5050/ML_download
 Rule: Body -> form-data
 Parameters: Element_id(text)
 ```

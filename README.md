@@ -126,4 +126,8 @@ user = 0x9ac1ba1dfe605b2463728ae71181bbe0da58e9f2
 > In `BIM_API` use `python3 ./api.py` to run the api.
 > 
 
-> editor Tsung-Yu Chan 2020/12/02
+## API Function
+>
+
+
+> editor HJ 2021/07/02

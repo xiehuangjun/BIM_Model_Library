@@ -1,4 +1,4 @@
-# BIM API V3 User guide
+# BIM Model Library API User guide
 ###### tags: `BIM`
 
 ## Code
@@ -130,47 +130,58 @@ user = 0x9ac1ba1dfe605b2463728ae71181bbe0da58e9f2
 
 ```
 1. POST : http://140.118.121.100:5050/register 
-- Body -> raw -> json
-{
+Rule: Body -> raw -> json
+Parameters: {
   "User_accountID": "M10902208",
   "User_account_name": "HuangJun",
   "User_group": "A組",
   "User_password": "m10902208"
 }
 
-2. 
-```
-
-> POST : http://140.118.121.100:5050/login
-> > Body -> raw -> json
-> > > {
+2. POST : http://140.118.121.100:5050/login
+Rule: Body -> raw -> json
+Parameters: {
   "User_accountID": "cc11",
   "User_password": "11"
 }
-> POST : http://140.118.121.100:5050/object_store
-> > Body -> form-data (Key, Value)
-> > > User_accountID(text), Object_Name(text), opng(file), threedm(file), gh(file), pjpg(file), ojson(file), pdf(file)
-> GET : http://140.118.121.100:5050/object_information
-> > Params (Key, Value)
-> > > User_accountID(text), Object_Name(text), Object_ID(text)
-> GET : http://140.118.121.100:5050/gh_download
-> > Params (Key, Value)
-> > > Object_ID(text)
-> GET : http://140.118.121.100:5050/3dm_download
-> > Params (Key, Value)
-> > > Object_ID(text)
-> GET : http://140.118.121.100:5050/main
-> GET : http://140.118.121.100:5050/search
-> > Params (Key, Value)
-> > > User_accountID(text), Object_Name(text)
-> GET : http://140.118.121.100:5050/pdf_download
-> > Params (Key, Value)
-> > > Object_ID(text)
-> GET : http://140.118.121.100:5050/json_download
-> > Params (Key, Value)
-> > > Object_ID(text)
-> POST : http://140.118.121.100:5050/ML_download
-> > Body -> form-data
-> > > Element_id(text)
+
+3. POST : http://140.118.121.100:5050/object_store
+Rule: Body -> form-data (Key, Value)
+Parameters: User_accountID(text), Object_Name(text), opng(file), threedm(file), gh(file), pjpg(file), ojson(file), pdf(file)
+
+4. POST : http://140.118.121.100:5050/object_store
+Rule: Body -> form-data (Key, Value)
+Parameters: User_accountID(text), Object_Name(text), opng(file), threedm(file), gh(file), pjpg(file), ojson(file), pdf(file)
+
+5. GET : http://140.118.121.100:5050/object_information
+Rule: Params (Key, Value)
+Parameters: User_accountID(text), Object_Name(text), Object_ID(text)
+
+6. GET : http://140.118.121.100:5050/gh_download
+Rule: Params (Key, Value)
+Parameters: Object_ID(text)
+
+7. GET : http://140.118.121.100:5050/3dm_download
+Rule: Params (Key, Value)
+Parameters: Object_ID(text)
+
+8. GET : http://140.118.121.100:5050/main
+
+9. GET : http://140.118.121.100:5050/search
+Rule: Params (Key, Value)
+Parameters: User_accountID(text), Object_Name(text)
+
+10. GET : http://140.118.121.100:5050/pdf_download
+Rule: Params (Key, Value)
+Parameters: Object_ID(text)
+
+11. GET : http://140.118.121.100:5050/json_download
+Rule: Params (Key, Value)
+Parameters: Object_ID(text)
+
+12. POST : http://140.118.121.100:5050/ML_download
+Rule: Body -> form-data
+Parameters: Element_id(text)
+```
 
 > editor HJ 2021/07/02

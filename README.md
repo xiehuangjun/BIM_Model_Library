@@ -128,13 +128,43 @@ user = 0x9ac1ba1dfe605b2463728ae71181bbe0da58e9f2
 
 ## API Function
 > POST : http://140.118.121.100:5050/register 
-> > {
+> > Body -> raw -> json
+> > > {
   "User_accountID": "M10902208",
   "User_account_name": "HuangJun",
   "User_group": "A組",
   "User_password": "m10902208"
 }
-
-
+> POST : http://140.118.121.100:5050/login
+> > Body -> raw -> json
+> > > {
+  "User_accountID": "cc11",
+  "User_password": "11"
+}
+> POST : http://140.118.121.100:5050/object_store
+> > Body -> form-data (Key, Value)
+> > > User_accountID(text), Object_Name(text), opng(file), threedm(file), gh(file), pjpg(file), ojson(file), pdf(file)
+> GET : http://140.118.121.100:5050/object_information
+> > Params (Key, Value)
+> > > User_accountID(text), Object_Name(text), Object_ID(text)
+> GET : http://140.118.121.100:5050/gh_download
+> > Params (Key, Value)
+> > > Object_ID(text)
+> GET : http://140.118.121.100:5050/3dm_download
+> > Params (Key, Value)
+> > > Object_ID(text)
+> GET : http://140.118.121.100:5050/main
+> GET : http://140.118.121.100:5050/search
+> > Params (Key, Value)
+> > > User_accountID(text), Object_Name(text)
+> GET : http://140.118.121.100:5050/pdf_download
+> > Params (Key, Value)
+> > > Object_ID(text)
+> GET : http://140.118.121.100:5050/json_download
+> > Params (Key, Value)
+> > > Object_ID(text)
+> POST : http://140.118.121.100:5050/ML_download
+> > Body -> form-data
+> > > Element_id(text)
 
 > editor HJ 2021/07/02

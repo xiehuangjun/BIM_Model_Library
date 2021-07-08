@@ -107,7 +107,7 @@ host = 0.0.0.0
 port = 5050
 
 [PATH]
-file_path = D:
+file_path = /home/zhongyu/data
 
 [ETHEREUM]
 host = 140.118.121.100

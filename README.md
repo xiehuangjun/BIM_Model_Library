@@ -2,7 +2,7 @@
 ###### tags: `BIM`
 
 ## Code
-> GitHub: https://github.com/jkcharlie6679/BIM_API.git
+> GitHub: https://github.com/xiehuangjun/BIM_Model_Library.git
 > 
 
 ## File structure

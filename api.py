@@ -103,7 +103,9 @@ def object_store():
     if(not request.files['ojson']):
         return jsonify({"error" : "request json file", "code" : "file_05"}), status.HTTP_400_BAD_REQUEST
     if(not request.files['pdf']):
-        return jsonify({"error" : "request json file", "code" : "file_06"}), status.HTTP_400_BAD_REQUEST
+        return jsonify({"error" : "request pdf file", "code" : "file_06"}), status.HTTP_400_BAD_REQUEST
+    if(not request.files['ghuser']):
+        return jsonify({"error" : "request ghuser file", "code" : "file_06"}), status.HTTP_400_BAD_REQUEST
 
     File_png = request.files['opng']
     File_png_name = File_png.filename.rsplit('.',1)[1]
@@ -134,6 +136,11 @@ def object_store():
     File_pdf_name = File_pdf.filename.rsplit('.',1)[1]
     if((File_pdf_name != 'pdf') and (File_pdf_name != 'pdf')):
         return jsonify({"error": 1001, "msg": "不是pdf檔案"}), status.HTTP_400_BAD_REQUEST
+
+    File_ghuser = request.files['ghuser'] 
+    File_ghuser_name = File_ghuser.filename.rsplit('.',1)[1]
+    if((File_ghuser_name != 'ghuser') and (File_ghuser_name != 'ghuser')):
+        return jsonify({"error": 1001, "msg": "不是ghuser檔案"}), status.HTTP_400_BAD_REQUEST
     
     jsonload = json.load(File_json)
     
@@ -167,6 +174,7 @@ def object_store():
     Object_3dm_path = os.path.join(file_path, Object_ID + '.3dm')
     Project_jpg_path = os.path.join(file_path, Object_ID + '.jpg')
     Object_pdf_path = os.path.join(file_path,Object_ID + '.pdf')
+    Object_ghuser_path = os.path.join(file_path,Object_ID + '.ghuser')
 
     png_time_start = time.time()
     File_png.save(Object_png_path)
@@ -199,12 +207,18 @@ def object_store():
     pdf_time_stop = time.time()
     Object_pdf_time = pdf_time_stop- pdf_time_start
 
+    ghuser_time_start = time.time()
+    File_ghuser.save(Object_ghuser_path)
+    ghuser_time_stop = time.time()
+    Object_ghuser_time = ghuser_time_stop- ghuser_time_start
+
     File_png_size = getSize(File_png)
     File_3dm_size = getSize(File_3dm)
     File_gh_size = getSize(File_gh)
     File_jpg_size = getSize(File_jpg)
     File_json_size = getSize(File_json)
-    File_pdf_size = getSize(File_pdf)  
+    File_pdf_size = getSize(File_pdf)
+    File_ghuser_size = getSize(File_ghuser)   
 
     bc_time_start = time.time()
     eth_data = {}
@@ -223,7 +237,8 @@ def object_store():
     eth_data["Project_jpg_size"] = File_jpg_size
     eth_data["Object_pdf_path"] = Object_pdf_path
     eth_data["Object_pdf_size"] = File_pdf_size
-    eth_data["Object_version"] = Object_version
+    eth_data["Object_ghuser_path"] = Object_ghuser_path
+    eth_data["Object_ghuser_size"] = File_ghuser_size
     hash_code = Transaction(eth_data, config['ETHEREUM']['user'])
     bc_time_stop = time.time()
     Object_bc_time = bc_time_stop - bc_time_start
@@ -261,12 +276,16 @@ def object_store():
                                                    Id_co_times,
                                                    Id_ch_time,
                                                    Id_so_time,
-                                                   Id_to_time)VALUES(%s, %s, %s, %s, %s, %s, 
+                                                   Id_to_time,
+                                                   Object_ghuser_path,
+                                                   Object_ghuser_size,
+                                                   Object_ghuser_time
+                                                   )VALUES(%s, %s, %s, %s, %s, %s, 
                                                                      %s, %s, %s, %s, %s, %s, 
                                                                      %s, %s, %s, %s, %s, %s, 
                                                                      %s, %s, %s, %s, %s, %s, 
                                                                      %s, %s, %s, %s, %s, %s,
-                                                                     %s, %s, %s, %s);'''
+                                                                     %s, %s, %s, %s, %s, %s, %s);'''
 
     insert_data = (
         User_accountID,
@@ -302,7 +321,11 @@ def object_store():
         '0',
         '0',
         '0',
-        '0')
+        '0',
+        Object_ghuser_path,
+        File_ghuser_size,
+        str(Object_ghuser_time)
+        )
 
     db_time_start= time.time()
     cur.execute(INSERT, insert_data)
@@ -423,8 +446,25 @@ def json_download():
         data_json['Log'] = "Download Failed"
         return json.dumps(data_json), status.HTTP_400_BAD_REQUEST
     else:
-        Object_pdf_path = data[0][4]
-        return send_from_directory(Object_pdf_path.rsplit("/", 1)[0], Object_pdf_path.rsplit("/", 1)[1], as_attachment = True), status.HTTP_200_OK
+        Object_json_path = data[0][4]
+        return send_from_directory(Object_json_path.rsplit("/", 1)[0], Object_json_path.rsplit("/", 1)[1], as_attachment = True), status.HTTP_200_OK
+
+@app.route('/ghuser_download', methods = ['GET'])
+@cross_origin()
+def ghuser_download():
+    data_json = {}
+    Object_ID = request.args.get('Object_ID')
+    mysql = pymysql.connect(user = config['MYSQL']["user"], password = config['MYSQL']["password"], port = int(config["MYSQL"]["port"]), host = config['MYSQL']["host"])
+    cur = mysql.cursor()
+    cur.execute('''SELECT * FROM BIM.Object_Information WHERE Object_ID = '%s';''' %Object_ID)
+    data = cur.fetchall()
+    if(len(data) == 0):
+        data_json['Log'] = "Download Failed"
+        return json.dumps(data_json), status.HTTP_400_BAD_REQUEST
+    else:
+        Object_ghuser_path = data[0][34]
+        return send_from_directory(Object_ghuser_path.rsplit("/", 1)[0], Object_ghuser_path.rsplit("/", 1)[1], as_attachment = True), status.HTTP_200_OK
+
 
 @app.route('/main', methods = ['GET'])
 @cross_origin()

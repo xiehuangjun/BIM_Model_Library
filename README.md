@@ -1,5 +1,5 @@
 # BIM Model Library API User guide
-###### tags: `BIM`
+###### tags: `BIM Model Library`
 
 ## Code
 > GitHub: https://github.com/xiehuangjun/BIM_Model_Library.git
@@ -132,7 +132,8 @@ user = 0x9ac1ba1dfe605b2463728ae71181bbe0da58e9f2
 1. Register User information
 POST : http://140.118.121.100:5050/register 
 Rule: Body -> raw -> json
-Parameters: {
+Parameters: 
+{
   "User_accountID": "M10902208",
   "User_account_name": "HuangJun",
   "User_group": "A組",
@@ -143,7 +144,8 @@ Parameters: {
 2. Login 
 POST : http://140.118.121.100:5050/login
 Rule: Body -> raw -> json
-Parameters: {
+Parameters: 
+{
   "User_accountID": "cc11",
   "User_password": "11"
 }
@@ -152,25 +154,38 @@ Parameters: {
 3. Upload the information of Model Library (include text, files)
 POST : http://140.118.121.100:5050/object_store
 Rule: Body -> form-data (Key, Value)
-Parameters: User_accountID(text), Object_Name(text), opng(file), threedm(file), gh(file), pjpg(file), ojson(file), pdf(file)
+Parameters: 
+  a. User_accountID(text)
+  b. Object_Name(text)
+  c. opng(file)
+  d. threedm(file)
+  e. gh(file)
+  f. pjpg(file)
+  g. ojson(file)
+  h. pdf(file)
 ```
 ```
 4. According to the paramters, and get the information from the database
 GET : http://140.118.121.100:5050/object_information
 Rule: Params (Key, Value)
-Parameters: User_accountID(text), Object_Name(text), Object_ID(text)
+Parameters: 
+  a. User_accountID(text)
+  b. Object_Name(text)
+  c. Object_ID(text)
 ```
 ```
 5. Download the GH file.
 GET : http://140.118.121.100:5050/gh_download
 Rule: Params (Key, Value)
-Parameters: Object_ID(text)
+Parameters: 
+  a. Object_ID(text)
 ```
 ```
 6. Download the 3DM file.
 GET : http://140.118.121.100:5050/3dm_download
 Rule: Params (Key, Value)
-Parameters: Object_ID(text)
+Parameters: 
+  a. Object_ID(text)
 ```
 ```
 7. Get the all data from the database, and display on the Model Library Web.
@@ -180,25 +195,30 @@ GET : http://140.118.121.100:5050/main
 8. According to the paramters, and search from the database
 GET : http://140.118.121.100:5050/search
 Rule: Params (Key, Value)
-Parameters: User_accountID(text), Object_Name(text)
+Parameters: 
+  a. User_accountID(text)
+  b. Object_Name(text)
 ```
 ```
 9. Download the PDF file.
 GET : http://140.118.121.100:5050/pdf_download
 Rule: Params (Key, Value)
-Parameters: Object_ID(text)
+Parameters: 
+  a. Object_ID(text)
 ```
 ```
 11. Download the JSON file.
 GET : http://140.118.121.100:5050/json_download
 Rule: Params (Key, Value)
-Parameters: Object_ID(text)
+Parameters: 
+  a. Object_ID(text)
 ```
 ```
 12. Download the GH file of the Model Library, and use the Grasshopper to get the file.
 POST : http://140.118.121.100:5050/ML_download
 Rule: Body -> form-data
-Parameters: Element_id(text)
+Parameters: 
+  a. Element_id(text)
 ```
 
 > editor HJ 2021/07/02

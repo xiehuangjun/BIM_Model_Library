@@ -1,5 +1,5 @@
 # BIM Model Library API User guide
-###### tags: `BIM`
+###### tags: `BIM Model Library`
 
 ## Code
 > GitHub: https://github.com/xiehuangjun/BIM_Model_Library.git
@@ -221,4 +221,4 @@ Parameters:
   a. Element_id [text]
 ```
 
-> editor HJ 2021/07/02
+> editor HJ 2021/07/09

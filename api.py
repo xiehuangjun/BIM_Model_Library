@@ -542,9 +542,9 @@ def search():
         data_json["Log"] = "Search Failed"
         return json.dumps(data_json), status.HTTP_400_BAD_REQUEST
 
-@app.route('/ML_download', methods = ['POST'])
+@app.route('/ML_download_gh', methods = ['POST'])
 @cross_origin()
-def ML_download():
+def ML_download_gh():
     data_json = {}
     Object_ID = request.form.get('Object_ID')
     mysql = pymysql.connect(user = config['MYSQL']["user"], password = config['MYSQL']["password"], port = int(config["MYSQL"]["port"]), host = config['MYSQL']["host"])
@@ -559,6 +559,39 @@ def ML_download():
         cur.execute('''UPDATE BIM.Object_Information SET Object_download_times = '%s' WHERE Object_ID = '%s';''' %(int(data[0][18]) + 1, Object_ID))
         return send_from_directory(Object_gh_path.rsplit("/", 1)[0], Object_gh_path.rsplit("/", 1)[1], as_attachment = True), status.HTTP_200_OK
 
+@app.route('/ML_download_3dm', methods = ['POST'])
+@cross_origin()
+def ML_download_3dm():
+    data_json = {}
+    Object_ID = request.form.get('Object_ID')
+    mysql = pymysql.connect(user = config['MYSQL']["user"], password = config['MYSQL']["password"], port = int(config["MYSQL"]["port"]), host = config['MYSQL']["host"])
+    cur = mysql.cursor()
+    cur.execute('''SELECT * FROM BIM.Object_Information WHERE Object_ID = '%s';''' %Object_ID)
+    data = cur.fetchall()
+    if(len(data) == 0):
+        data_json['Log'] = "Download Failed"
+        return json.dumps(data_json), status.HTTP_400_BAD_REQUEST
+    else:
+        Object_gh_path = data[0][10]
+        cur.execute('''UPDATE BIM.Object_Information SET Object_download_times = '%s' WHERE Object_ID = '%s';''' %(int(data[0][18]) + 1, Object_ID))
+        return send_from_directory(Object_gh_path.rsplit("/", 1)[0], Object_gh_path.rsplit("/", 1)[1], as_attachment = True), status.HTTP_200_OK
+
+@app.route('/ML_download_ghuser', methods = ['POST'])
+@cross_origin()
+def ML_download_ghuser():
+    data_json = {}
+    Object_ID = request.form.get('Object_ID')
+    mysql = pymysql.connect(user = config['MYSQL']["user"], password = config['MYSQL']["password"], port = int(config["MYSQL"]["port"]), host = config['MYSQL']["host"])
+    cur = mysql.cursor()
+    cur.execute('''SELECT * FROM BIM.Object_Information WHERE Object_ID = '%s';''' %Object_ID)
+    data = cur.fetchall()
+    if(len(data) == 0):
+        data_json['Log'] = "Download Failed"
+        return json.dumps(data_json), status.HTTP_400_BAD_REQUEST
+    else:
+        Object_gh_path = data[0][34]
+        cur.execute('''UPDATE BIM.Object_Information SET Object_download_times = '%s' WHERE Object_ID = '%s';''' %(int(data[0][18]) + 1, Object_ID))
+        return send_from_directory(Object_gh_path.rsplit("/", 1)[0], Object_gh_path.rsplit("/", 1)[1], as_attachment = True), status.HTTP_200_OK
 
 app.run(host = config['FLASK']['host'], port = int(config['FLASK']['port']), debug=True )
 

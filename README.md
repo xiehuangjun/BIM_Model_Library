@@ -215,10 +215,24 @@ Parameters:
 ```
 ```
 12. Download the GH file of the Model Library, and use the Grasshopper to get the file.
-POST : http://140.118.121.100:5050/ML_download
+POST : http://140.118.121.100:5050/ML_download_gh
 Rule: Body -> form-data
 Parameters: 
-  a. Element_id [text]
+  a. Object_ID [text]
+```
+```
+13. Download the 3dm file of the Model Library, and use the Grasshopper to get the file.
+POST : http://140.118.121.100:5050/ML_download_3dm
+Rule: Body -> form-data
+Parameters: 
+  a. Object_ID [text]
+```
+```
+14. Download the ghuser file of the Model Library, and use the Grasshopper to get the file.
+POST : http://140.118.121.100:5050/ML_download_ghuser
+Rule: Body -> form-data
+Parameters: 
+  a. Object_ID [text]
 ```
 
 > editor HJ 2021/07/09
